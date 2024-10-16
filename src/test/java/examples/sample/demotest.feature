@@ -82,6 +82,7 @@ Scenario: ToDoInsert
     * match response.redirect == "/login"
 
 
+Scenario: InvalidEmailAdress
   # ユーザー登録(".com"抜けの不正値)
   * def timestamp2 = getTime(0)
 
