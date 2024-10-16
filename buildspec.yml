@@ -1,11 +1,17 @@
 version: 0.2
 env:
+  secrets-manager:
+    DOCKERHUB_USER: arn:aws:secretsmanager:$AWS_DEFAULT_REGION:$AWS_ACCOUNT_ID:secret:flask_ecs_test:username
+    DOCKERHUB_PASS: arn:aws:secretsmanager:$AWS_DEFAULT_REGION:$AWS_ACCOUNT_ID:secret:flask_ecs_test:password
   variables:
     # レポート配置用に作成したバケット名を指定
     REPORT_S3_BUCKET: karate-bucket
 phases:
   pre_build:
     commands:
+      # Docker Hubへログイン
+      - echo Logging in to Docker Hub...
+      - echo $DOCKERHUB_PASS | docker login -u $DOCKERHUB_USER --password-stdin
       # 元のDockerイメージのENTRYPOINTで実行される想定だった処理を実行
       - echo Start Chrome
       - nohup /entrypoint.sh & # ★1
