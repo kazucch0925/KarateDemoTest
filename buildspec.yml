@@ -9,7 +9,10 @@ env:
 phases:
   pre_build:
     commands:
-      # Docker Hubへログイン
+      # DockerをインストールしてDocker Hubにログイン
+      - echo Installing Docker...
+      - apt-get update
+      - apt-get install -y docker.io
       - echo Logging in to Docker Hub...
       - echo $DOCKERHUB_PASS | docker login -u $DOCKERHUB_USER --password-stdin
       # 元のDockerイメージのENTRYPOINTで実行される想定だった処理を実行
