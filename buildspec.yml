@@ -7,13 +7,10 @@ env:
     # レポート配置用に作成したバケット名を指定
     REPORT_S3_BUCKET: karate-bucket
 phases:
-  install:
-    commands:
-      - apt-get update && apt-get install -y curl
   pre_build:
     commands:
       # Amazon CorrettoのGPGキーを更新する
-      - curl -fsSL https://apt.corretto.aws/corretto.key | gpg --dearmor | tee /usr/share/keyrings/corretto.gpg > /dev/null
+      - wget -O- https://apt.corretto.aws/corretto.key | gpg --dearmor | tee /usr/share/keyrings/corretto.gpg > /dev/null
       - echo "deb [signed-by=/usr/share/keyrings/corretto.gpg] https://apt.corretto.aws stable main" | tee /etc/apt/sources.list.d/corretto.list
       # DockerをインストールしてDocker Hubにログイン
       - echo Installing Docker...
