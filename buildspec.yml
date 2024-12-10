@@ -7,6 +7,9 @@ env:
     # レポート配置用に作成したバケット名を指定
     REPORT_S3_BUCKET: karate-bucket
 phases:
+  install:
+    commands:
+      - apt-get update && apt-get install -y curl
   pre_build:
     commands:
       # Amazon CorrettoのGPGキーを更新する
