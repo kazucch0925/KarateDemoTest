@@ -42,4 +42,4 @@ phases:
     commands:
       # S3にレポートをアップロード
       - echo Uploading Karate results...
-      - aws s3 sync ./target/karate-reports s3://${REPORT_S3_BUCKET}/karate/karate-reports --no-progress --delete
+      - aws s3 sync ./target/karate-reports s3://${REPORT_S3_BUCKET}/karate/karate-reports-v2 --no-progress --delete
