@@ -3,9 +3,7 @@ env:
   secrets-manager:
     DOCKERHUB_USER: arn:aws:secretsmanager:$AWS_DEFAULT_REGION:$AWS_ACCOUNT_ID:secret:flask_ecs_test:username
     DOCKERHUB_PASS: arn:aws:secretsmanager:$AWS_DEFAULT_REGION:$AWS_ACCOUNT_ID:secret:flask_ecs_test:password
-  variables:
-    # レポート配置用に作成したバケット名を指定
-    REPORT_S3_BUCKET: karate-bucket-v2
+
 phases:
   pre_build:
     commands:
